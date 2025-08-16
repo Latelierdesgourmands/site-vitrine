@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carte – L'Atelier des Gourmands</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+        <nav id="main-nav">
+            <ul>
+              <li><a href="atelier des gourmands.html">Accueil</a></li>
+              <li><a href="carte.html">La carte</a></li>
+              <li><a href="épicerie fine.html">Épicerie fine</a></li>
+              <li><a href="Pause déjeuner.html">Pause déjeuner</a></li>
+              <li><a href="A propos.html">À propos</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+    </div>
+  </header>
+
+  <main class="menu-container">
+    <h1 class="menu-title">Les Menus</h1>
+    <p class="menu-subtitle">Service de 10h à 18h</p>
+
+    <div class="menu-tabs">
+      <button class="tab active" data-target="sale">Salé</button>
+      <button class="tab" data-target="sucre">Sucré</button>
+      <button class="tab" data-target="chaudes">Boissons chaudes</button>
+      <button class="tab" data-target="froides">Boissons froides</button>
+    </div>
+
+    <section class="tab-content active" id="sale">
+        <h2>Formule Midi</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="panini.jpg" alt="Panini + frites">
+            <p><strong>Panini + Frites</strong><br>Servi de 10h à 18h</p>
+            <p class="price">8,50 €</p>
+          </div>
+          <div class="menu-item">
+              <img src="hotdog.jpg" alt="Panini + frites">
+              <p><strong>Panini + Frites</strong><br>Servi de 10h à 18h</p>
+              <p class="price">8,50 €</p>
+            </div>
+          <!-- Ajoute d'autres plats ici -->
+        </div>
+      </section>
+
+    <section class="tab-content" id="sucre">
+      <h2>Petit Déjeuner (10h-12h)</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="petitdej1.jpg" alt="Viennoiserie + Tartine">
+          <p><strong>Viennoiserie & Tartine confiture</strong><br>+ Jus d'orange ou canette<br>+ Boisson chaude</p>
+          <p class="price">9,00 €</p>
+        </div>
+        <div class="menu-item">
+          <img src="petitdej1.jpg" alt="Viennoiserie seule">
+          <p><strong>Viennoiserie</strong><br>+ Jus ou canette<br>+ Boisson chaude</p>
+          <p class="price">7,00 €</p>
+        </div>
+        <div class="menu-item">
+          <img src="petitdej1.jpg" alt="Viennoiserie + café">
+          <p><strong>Viennoiserie</strong><br>+ Boisson chaude</p>
+          <p class="price">5,00 €</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="tab-content" id="chaudes">
+      <h2>Boissons Chaudes</h2>
+      <ul class="drink-list">
+        <li>Expresso  <strong>2,00 €</strong></li>
+        <li>Café  <strong>2,50 €</strong></li>
+        <li>Allongé / Americano  <strong>2,50 €</strong></li>
+        <li>Latte Macchiato  <strong>2,80 €</strong></li>
+        <li>Capuccino  <strong>4,00 €</strong></li>
+        <li>Chocolat chaud  <strong>3,50 €</strong></li>
+      </ul>
+    </section>
+
+    <section class="tab-content" id="froides">
+      <h2>Boissons Froides</h2>
+      <ul class="drink-list">
+        <li>Jus d’orange pressé — <strong>3,00 €</strong></li>
+        <li>Canette 33cl — <strong>2,50 €</strong></li>
+        <li>Smoothie maison — <strong>4,50 €</strong></li>
+      </ul>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 L'Atelier des Gourmands</p>
+  </footer>
+
+  <script>
+    // Onglets menu
+    const tabs = document.querySelectorAll(".tab");
+    const contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.target).classList.add("active");
+      });
+    });
+  </script>
+
+</body>
+</html>

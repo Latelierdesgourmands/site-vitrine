@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'atelier des gourmands</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header id="header">
+        <div class="navbar">
+            <nav id="main-nav">
+                <ul>
+                  <li><a href="atelier des gourmands.html">Accueil</a></li>
+                  <li><a href="carte.html">La carte</a></li>
+                  <li><a href="épicerie fine.html">Épicerie fine</a></li>
+                  <li><a href="Pause déjeuner.html">Pause déjeuner</a></li>
+                  <li><a href="A propos.html">À propos</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </nav>
+              
+          <button id="burger"></button>
+        </div>
+      
+        <div class="hero-banner">
+          <img src="bandeau.jpg" alt="Bannière accueil">
+          <div class="hero-overlay">
+              <h1>Bienvenue à l’atelier des gourmands</h1>
+              <div class="arrow" id="scroll-arrow">↓</div>
+          </div>          
+        </div>
+      </header>
+      
+
+  <main id="main">
+    <section class="suggestions">
+        <h2>L'atelier des Gourmands</h2>
+        <h3>Un savoir-faire artisanal.</h3>
+        <div class="grid">
+          <div class="card">
+            <img src="hotdog.jpg" alt="Hot Dog">
+            <p>Hot Dog</p>
+          </div>
+          <div class="card">
+            <img src="cafe.jpg" alt="Café">
+            <p>Café</p>
+            <a href="carte.html" class="btn-noir">Voir la carte</a>
+          </div>          
+          <div class="card">
+            <img src="crepes.jpg" alt="Crêpes">
+            <p>Crêpes</p>
+          </div>
+        </div>
+      </section>
+      
+      <section id="localisation" class="localisation">
+        <h2>Où nous trouver</h2>
+        <p>Venez découvrir L'Atelier des Gourmands à Capestang !</p>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23227.017065117518!2d2.9919673322325324!3d43.3063640662008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b1a61309de4fe9%3A0x75575b2e78b635f4!2sLe%20Petit%20Saint-Nazaire%2C%2034310%20Capestang!5e0!3m2!1sfr!2sfr!4v1754051019630!5m2!1sfr!2sfr"
+            width="100%" height="450" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <div>
+        <h4>À propos de nous</h4>
+        <ul>
+          <li><a href="#">Qui sommes-nous ?</a></li>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Suivez-nous</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>55 rue detatatat</p>
+        <p>05 63 98 07 94</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // On crée un flag pour détecter toute interaction
+    let userHasInteracted = false;
+  
+    // Si l'utilisateur scrolle manuellement → on annule le scroll auto
+    window.addEventListener("scroll", () => {
+      userHasInteracted = true;
+    });
+  
+    // Si l'utilisateur clique sur la flèche → on scroll + on annule l'auto
+    document.getElementById("scroll-arrow").addEventListener("click", function () {
+      userHasInteracted = true;
+      const target = document.getElementById("main");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  
+    // Au chargement de la page
+    window.addEventListener("load", function () {
+      // Scroll auto uniquement si pas d'interaction au bout de 10s
+      setTimeout(() => {
+        if (!userHasInteracted) {
+          const target = document.getElementById("main");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }, 10000);
+  
+      // Apparition du texte (si besoin)
+      setTimeout(() => {
+        const heroText = document.querySelector(".hero-text");
+        if (heroText) {
+          heroText.classList.add("visible");
+        }
+      }, 1000);
+    });
+  </script>
+  
+  
+</body>
+</html>
