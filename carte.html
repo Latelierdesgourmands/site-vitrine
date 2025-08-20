@@ -102,20 +102,47 @@
   </footer>
 
   <script>
-    // Onglets menu
+    // Onglets menu avec deep-link (hash ou ?tab=)
     const tabs = document.querySelectorAll(".tab");
     const contents = document.querySelectorAll(".tab-content");
-
+  
+    function activateTab(id) {
+      // sécurité: si id invalide, bascule sur 'sale'
+      const targetId = ["sale","sucre","chaudes","froides"].includes(id) ? id : "sale";
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => c.classList.remove("active"));
+      document.querySelector(`.tab[data-target="${targetId}"]`)?.classList.add("active");
+      document.getElementById(targetId)?.classList.add("active");
+    }
+  
+    // clic sur boutons
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("active"));
-        contents.forEach(c => c.classList.remove("active"));
-        tab.classList.add("active");
-        document.getElementById(tab.dataset.target).classList.add("active");
+        const id = tab.dataset.target;
+        activateTab(id);
+        // Mettez le hash pour pouvoir partager l’URL
+        history.replaceState(null, "", "#" + id);
       });
     });
+  
+    // lecture de l'onglet demandé: #hash PRIORITAIRE, sinon ?tab=
+    function getRequestedTab() {
+      const fromHash = (location.hash || "").replace("#", "").trim().toLowerCase();
+      if (fromHash) return fromHash;
+      const params = new URLSearchParams(location.search);
+      const fromQuery = (params.get("tab") || "").toLowerCase();
+      return fromQuery || null;
+    }
+  
+    // activer au chargement
+    activateTab(getRequestedTab());
+  
+    // réagir si le hash change (ex: retour arrière)
+    window.addEventListener("hashchange", () => {
+      activateTab(getRequestedTab());
+    });
   </script>
+  
 
 </body>
 </html>
-
